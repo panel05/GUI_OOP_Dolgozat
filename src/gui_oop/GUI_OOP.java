@@ -7,6 +7,8 @@ import java.awt.PopupMenu;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -48,6 +50,7 @@ public class GUI_OOP {
             frame.setJMenuBar(menu());
             frame.add(tabedpane());
             
+            frame.addWindowListener(new FormWindowAdapter());
             frame.setVisible(true);
         }
 
@@ -80,6 +83,7 @@ public class GUI_OOP {
             bejelent.add(balini());
             bejelent.add(jobini());
             JPanel jatek = new JPanel();
+            jatek.add(amoba());
             tbp.add("Bejelentkezés",bejelent);
             tbp.add("Játék",jatek);
             return tbp;
@@ -150,6 +154,11 @@ public class GUI_OOP {
        JLabel txt = new JLabel("Kód: ");
         return txt;
     }
+
+    private JPanel amoba() {
+        JPanel amoba = new JPanel();
+        return amoba;
+    }
         
         
     
@@ -166,18 +175,32 @@ public class GUI_OOP {
         }
     }
 
+    class FormWindowAdapter extends WindowAdapter{
+        
+        @Override
+        public void windowClosing(WindowEvent e) {
+           
+            super.windowClosing(e);
+            kilepes();
+        }
+
+        
+        
+    }
+    
     class KilepListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             kilepes();
         }
-
-        private void kilepes() {
+        
+        
+        }
+    private void kilepes() {
             int valasz = JOptionPane.showConfirmDialog(frame,"Kilépés", "Biztos kilép?", JOptionPane.YES_NO_OPTION);
             if(valasz == JOptionPane.YES_OPTION){
                 System.exit(valasz);
             }
-        }
     }
     
 }
