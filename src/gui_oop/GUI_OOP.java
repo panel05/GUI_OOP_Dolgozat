@@ -157,6 +157,7 @@ public class GUI_OOP {
 
     private JPanel amoba() {
         JPanel amoba = new JPanel();
+        amoba.setBorder(new TitledBorder("Amőba"));
         return amoba;
     }
         
